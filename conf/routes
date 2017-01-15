@@ -1,0 +1,38 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#### Home page
+# Signup with email and password
+# Login with email and password
+# Logout
+# Checked Is User Authenticated
+POST        /api/v1/signup                             controllers.AppController.signup
+POST        /api/v1/login                              controllers.AppController.login
+GET         /api/v1/logout                             controllers.AppController.logout
+GET         /api/v1/verifyAuth                         controllers.AppController.verifyAuth
+
+
+##### Users
+# GET All Users
+# GET User Details for a Specific Email ID
+GET         /api/v1/users/all                          controllers.UserController.getUsers
+GET         /api/v1/user/:emailId                      controllers.UserController.getUser(emailId: String)
+
+
+##### Articles
+# Articles Posted By a Specific User (Email Id)
+# Articles Related to a Specific Category (Category Name, Given when posting the Article)
+# Creating a new Article, Title, Content and Category
+# Delete a Article for given Article ID
+# Updating the Category of Article for Given Article Id and Category that needs to be updated.
+GET         /api/v1/articles/user/:email               controllers.ArticleController.getUserArticles(email: String)
+GET         /api/v1/articles/category/:category        controllers.ArticleController.getCategoryArticles(category: String)
+POST        /api/v1/article                            controllers.ArticleController.addArticle
+DELETE      /api/v1/article/:id                        controllers.ArticleController.deleteArticle(id: Long)
+PUT         /api/v1/article/:id/:category              controllers.ArticleController.changeArticleCategory(id: Long, category: String)
+
+
+#### Map static resources from the /public folder to the /assets URL path
+# Serving Public Directory
+GET         /assets/*file                           controllers.Assets.at(path="/public", file)
